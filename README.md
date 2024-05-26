@@ -28,13 +28,25 @@
 
 #### ローカル環境
 
-1. Python 3 をインストールします。
-2. 必要なライブラリをインストールします: `pip install pydub tqdm`
-3. FFmpeg をインストールし、PATH 環境変数に追加します。
-4. このリポジトリから `soundfile_normalization.py` ファイルをダウンロードします。
-5. 処理したい音声ファイルを `input` フォルダに配置します。
-6. ターミナルで `python sound_normalization.py` コマンドを実行します。
-7. 処理された音声ファイルは `output` フォルダに保存されます。
+1. **Python 3 をインストールします。**
+2. **FFmpeg をインストールします。** 
+   - インストール方法については、[公式ドキュメント](https://ffmpeg.org/download.html) を参照してください。
+   - インストール後、FFmpeg がシステムの PATH 環境変数に含まれていることを確認してください。
+3. **リポジトリのクローン** 
+   ```bash
+   git clone https://github.com/shoei05/soundfile_normalization.git
+   ```
+4. **クローンしたリポジトリのディレクトリに移動します。**
+   ```bash
+   cd soundfile_normalization
+   ```
+5. **必要なライブラリをインストールします:** 
+   ```bash
+   pip install -r requirements.txt
+   ```
+6. **処理したい音声ファイルを `input` フォルダに配置します。**
+7. **ターミナルで `python soundfile_normalization.py` コマンドを実行します。**
+8. **処理された音声ファイルは `output` フォルダに保存されます。**
 
 ### パラメータ
 
