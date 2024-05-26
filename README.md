@@ -43,25 +43,40 @@ soundfile_normalization/
 
 #### ローカル環境
 
-1. **Python 3 をインストールします。**
-2. **FFmpeg をインストールします。** 
+1. **FFmpeg をインストールします。** 
    - インストール方法については、[公式ドキュメント](https://ffmpeg.org/download.html) を参照してください。
    - インストール後、FFmpeg がシステムの PATH 環境変数に含まれていることを確認してください。
-3. **リポジトリのクローン** 
+2. **リポジトリのクローン** 
    ```bash
    git clone https://github.com/shoei05/soundfile_normalization.git
    ```
-4. **クローンしたリポジトリのディレクトリに移動します。**
+3. **クローンしたリポジトリのディレクトリに移動します。**
    ```bash
    cd soundfile_normalization
    ```
-5. **必要なライブラリをインストールします:** 
+4. **仮想環境の作成 (推奨):**  クローンしたリポジトリのディレクトリに移動し、仮想環境を作成します (Python のバージョンやライブラリの依存関係を分離するために推奨されます)。
+
+   ```bash
+   cd replace_text
+   python -m venv env_soundfile_normalization
+   ```
+5. **仮想環境の有効化:**
+
+   * **Windows:**
+     ```bash
+     env_soundfile_normalization \Scripts\activate
+     ```
+   * **macOS/Linux:**
+     ```bash
+     source env_soundfile_normalization/bin/activate
+     ```
+6. **必要なライブラリをインストールします:** 
    ```bash
    pip install -r requirements.txt
    ```
-6. **処理したい音声ファイルを `input` フォルダに配置します。**
-7. **ターミナルで `python soundfile_normalization.py` コマンドを実行します。**
-8. **処理された音声ファイルは `output` フォルダに保存されます。**
+7. **処理したい音声ファイルを `input` フォルダに配置します。**
+8. **ターミナルで `python soundfile_normalization.py` コマンドを実行します。**
+9. **処理された音声ファイルは `output` フォルダに保存されます。**
 
 ### パラメータ
 
