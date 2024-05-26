@@ -15,6 +15,21 @@
 * **様々な入力形式のサポート:** WAV, MP3, MP4, M4A, MKV, WEBM などの一般的な音声および動画形式に対応しています。
 * **Google Colab対応:** Google Colab環境で簡単に実行できます。
 
+### ディレクトリ構造
+
+```
+soundfile_normalization/
+├── soundfile_normalization.py   # メインのPythonスクリプト
+├── input/                      # 処理したい音声データを格納するフォルダ
+│   └── (音声データを入れる) 
+├── output/                     # 処理後の音声データが格納されるフォルダ (自動生成)
+│   └── (処理後の音声データ)
+└── done_original/               # 処理が完了した元の音声データが格納されるフォルダ (自動生成)
+    └── (処理後の元データ)
+├── README.md                   # このファイル
+└── requirements.txt             # 必要なパッケージリスト
+```
+
 ### 使用方法
 
 #### Google Colab
