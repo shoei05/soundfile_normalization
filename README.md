@@ -1,0 +1,2 @@
+# soundfile_normalization
+音声ファイルの前処理: ノイズ除去と音量正規化を自動化するPythonコード
