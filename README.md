@@ -1,5 +1,7 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1S9gfGZZ2NleEv6QgH51dxu2s95sOfgQ2?usp=sharing)
 
+[解説記事](https://plaza.umin.ac.jp/shoei05/index.php/2024/05/26/2546/)
+
 # soundfile_normalization
 音声ファイルの前処理: ノイズ除去と音量正規化を自動化するPythonコード
 
