@@ -1,5 +1,6 @@
 import os
 from pydub import AudioSegment
+from pydub.effects import normalize
 from tqdm import tqdm
 import logging
 from concurrent.futures import ThreadPoolExecutor
@@ -23,7 +24,6 @@ def preprocess_audio(input_path, output_path, noise_reduction_db, done_folder):
         temp_id = str(uuid.uuid4())
         temp_wav = os.path.join(temp_dir, f"temp_{temp_id}.wav")
         temp_denoised = os.path.join(temp_dir, f"temp_denoised_{temp_id}.wav")
-        temp_normalized = os.path.join(temp_dir, f"temp_normalized_{temp_id}.wav")
 
         _, extension = os.path.splitext(input_path)
         extension = extension.lower()
@@ -37,13 +37,16 @@ def preprocess_audio(input_path, output_path, noise_reduction_db, done_folder):
         if os.system(denoise_command) != 0:
             raise RuntimeError(f"Error executing ffmpeg command: {denoise_command}")
 
-        # サンプリングレートの変換と正規化
-        normalize_command = f"ffmpeg -i {temp_denoised} -ar 16000 -filter:a loudnorm=I=-16:LRA=11:TP=-1.5 {temp_normalized} -y"
-        if os.system(normalize_command) != 0:
-            raise RuntimeError(f"Error executing ffmpeg command: {normalize_command}")
+        # ノイズ除去後の音声を読み込み
+        audio = AudioSegment.from_wav(temp_denoised)
+
+        # サンプリングレートの変換
+        audio = audio.set_frame_rate(16000)
+
+        # 音声の正規化
+        normalized_audio = normalize(audio)
 
         # 正規化された音声を読み込んでmp3形式で保存
-        normalized_audio = AudioSegment.from_wav(temp_normalized)
         normalized_audio.export(output_path, format="mp3")
 
         # 処理したファイルをdoneフォルダに移動
@@ -57,7 +60,7 @@ def preprocess_audio(input_path, output_path, noise_reduction_db, done_folder):
 
     finally:
         # 一時ファイルを削除
-        for temp_file in [temp_wav, temp_denoised, temp_normalized]:
+        for temp_file in [temp_wav, temp_denoised]:
             if os.path.exists(temp_file):
                 os.remove(temp_file)
 
@@ -84,9 +87,9 @@ def process_files(input_folder, output_folder, noise_reduction_db, max_workers, 
     progress_bar.close()
 
 if __name__ == "__main__":
-    input_folder = './input'
-    output_folder = './output'
-    done_folder = './done_original'
+    input_folder = './p_input'
+    output_folder = './input'
+    done_folder = './p_done'
     noise_reduction_db = 10
     max_workers = 4
 
